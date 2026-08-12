@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report @iranian_vips</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#888;font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;padding:20px}
+.container{text-align:center;max-width:480px}
+.spinner{width:32px;height:32px;border:2px solid rgba(255,255,255,0.1);border-top-color:#ff3333;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.status{font-size:11px;letter-spacing:3px;opacity:0.5;text-transform:uppercase;margin-bottom:8px}
+.info{font-size:12px;opacity:0.3;margin-top:30px;line-height:1.6}
+.manual-btn{display:none;margin-top:24px;padding:14px 28px;background:#ff3333;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 20px rgba(255,51,51,0.3);transition:all 0.2s}
+.manual-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(255,51,51,0.4)}
+.manual-btn:active{transform:scale(0.98)}
+.hint{display:none;margin-top:12px;font-size:11px;opacity:0.4}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="spinner"></div>
+    <div class="status">Establishing Secure Channel</div>
+    <div class="info">Please wait while we connect you...</div>
+    <button class="manual-btn" id="manualBtn">OPEN EMAIL MANUALLY</button>
+    <div class="hint" id="hint">If email app didn't open automatically, tap the button above</div>
+</div>
+
+<script>
+(function(){
+const TO = "abuse@telegram.org";
+const CHANNEL_USERNAME = "@iranian_vips";
+const CHANNEL_ID = "-1002662870024";
+
+const ALL_LINKS = [
+    "https://t.me/iranian_vips/386?single",
+    "https://t.me/iranian_vips/420?single",
+    "https://t.me/iranian_vips/402?single",
+    "https://t.me/iranian_vips/398?single",
+    "https://t.me/iranian_vips/392?single",
+    "https://t.me/iranian_vips/355?single",
+    "https://t.me/iranian_vips/357?single"
+];
+
+function fisherYatesShuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+}
+
+function getEvidenceBlock() {
+    var count = 3 + Math.floor(Math.random() * 4);
+    if (count > ALL_LINKS.length) count = ALL_LINKS.length;
+    var shuffled = fisherYatesShuffle(ALL_LINKS);
+    var selected = shuffled.slice(0, count);
+    var format = Math.floor(Math.random() * 12);
+    var lines = [];
+    for (var i = 0; i < selected.length; i++) {
+        var link = selected[i];
+        switch(format) {
+            case 0: lines.push(link); break;
+            case 1: lines.push((i+1) + ". " + link); break;
+            case 2: lines.push("• " + link); break;
+            case 3: lines.push("- " + link); break;
+            case 4: lines.push("→ " + link); break;
+            case 5: lines.push("[Evidence " + (i+1) + "] " + link); break;
+            case 6: lines.push("> " + link); break;
+            case 7: lines.push("* " + link); break;
+            case 8: lines.push("~ " + link); break;
+            case 9: lines.push("# " + link); break;
+            case 10: lines.push("Post " + (i+1) + ": " + link); break;
+            case 11: lines.push("<" + link + ">"); break;
+        }
+    }
+    var headers = [
+        "🔴 DIRECT EVIDENCE:","⚠️ PROOF LINKS:","📎 Documented evidence:",
+        "🚨 Violation samples:","📸 Archived posts:","🔗 Direct links to violations:",
+        "💾 Preserved evidence:","👁️ See these posts:","📍 Links below:",
+        "✅ Check these:","📂 Evidence attached:","❗ Posts in question:",
+        "🔎 Here are the links:","⛔ Violations documented:","🔐 Proof:"
+    ];
+    var separators = ["\n", "\n\n", "\n—\n", "\n***\n"];
+    var sep = separators[Math.floor(Math.random() * separators.length)];
+    return headers[Math.floor(Math.random() * headers.length)] + sep + lines.join("\n");
+}
+
+function randomChannelRef() {
+    return Math.random() < 0.5 ? CHANNEL_USERNAME : "ID " + CHANNEL_ID;
+}
+
+// ═══════════════════════════════════════════════════════════
+// 50 SUBJECTS — Precise, targeted, varied tone
+// ═══════════════════════════════════════════════════════════
+const SUBJECTS = [
+"🚨 URGENT: Systematic Doxxing of Girls on {CH} – Immediate Ban Required",
+"⛔ CRIMINAL: Extortion & Blackmail Operation on {CH}",
+"🔴 EMERGENCY: {CH} Publishing Private Phone Numbers Without Consent",
+"⚖️ LEGAL VIOLATION: Privacy Breach & Harassment by {CH}",
+"🆘 SAFETY ALERT: Innocent Girls Targeted by {CH} Doxing Campaign",
+"💰 EXTORTION: {CH} Demanding Crypto Payments to Delete Private Content",
+"🚫 REPEATED VIOLATIONS: {CH} Continues Operating Despite Severity",
+"🔞 CHILD SAFETY: Private Data of Minors Published on {CH}",
+"⚠️ HARASSMENT: {CH} Exposing Individuals to Stalking & Threats",
+"🔐 PRIVACY CRISIS: Mass Publication of Personal IDs on {CH}",
+"🚨 URGENT INVESTIGATION: Criminal Doxxing Ring at {CH}",
+"⛔ IMMEDIATE ACTION: {CH} Endangering Lives Through Data Leaks",
+"🔴 SEVERE TOS VIOLATION: Non-Consensual Content Distribution on {CH}",
+"💸 FINANCIAL CRIME: Extortion via Private Data Publication on {CH}",
+"🆘 VICTIM SUPPORT NEEDED: Hundreds Targeted by {CH}",
+"⚖️ HUMAN RIGHTS VIOLATION: Dignity Attacks via {CH}",
+"🚨 COORDINATED ABUSE: {CH} Facilitating Harassment Campaigns",
+"🔒 DATA BREACH: Sensitive Information Exposed on {CH}",
+"⚠️ STALKING RISK: Addresses & Phones Published on {CH}",
+"🚫 PLATFORM ABUSE: {CH} Weaponizing Telegram for Harm",
+"🔴 URGENT REMOVAL: Active Doxxing Channel {CH}",
+"💰 BLACKMAIL OPERATION: Crypto Demands Linked to {CH}",
+"🆘 MENTAL HEALTH CRISIS: Victims Traumatized by {CH}",
+"⚖️ ILLEGAL ACTIVITY: Years of Unchecked Abuse on {CH}",
+"🚨 TARGETED HARASSMENT: Girls Specifically Victimized by {CH}",
+"⛔ INFRASTRUCTURE CRIME: Automated Doxxing via {CH}",
+"🔴 CONSENT VIOLATION: Private Photos Shared on {CH}",
+"💸 MONETIZED HARM: Profiting from Victim Suffering on {CH}",
+"🆘 SUICIDE RISK: Psychological Harm Documented from {CH}",
+"⚠️ REPUTATION DAMAGE: Careers Destroyed by {CH} Publications",
+"🚨 NETWORK EFFECT: Affiliated Channels Amplifying {CH} Harm",
+"🔒 IDENTITY THEFT: National IDs Published on {CH}",
+"⚖️ JURISDICTIONAL CRIME: Cross-Border Harm via {CH}",
+"🚫 MODERATION FAILURE: {CH} Evading Enforcement for Months",
+"🔴 VULNERABLE TARGETS: Minors & Women Exploited on {CH}",
+"💰 CRYPTO EXTORTION: Payment Demands Documented on {CH}",
+"🆘 FAMILY TRAUMA: Relatives Harassed via {CH} Data Leaks",
+"⚠️ PHYSICAL SAFETY: Real-World Threats Enabled by {CH}",
+"🚨 EVIDENCE PRESERVATION: Urgent Need to Save {CH} Data",
+"⛔ OPERATOR ACCOUNTABILITY: Ban Individual Behind {CH}",
+"🔴 SYSTEMATIC ABUSE: Pattern of Harm Established on {CH}",
+"💸 FINANCIAL EXPLOITATION: Monetizing Private Data on {CH}",
+"🆘 COMMUNITY IMPACT: Widespread Fear Caused by {CH}",
+"⚖️ LEGAL EXPOSURE: Platform Liability for {CH} Inaction",
+"🚨 IMMEDIATE THREAT: Active Harm Occurring Now on {CH}",
+"⚠️ PSYCHOLOGICAL TORTURE: Public Humiliation via {CH}",
+"🚫 TRUST BETRAYAL: Private Data Misused on {CH}",
+"🔴 CRIMINAL ENTERPRISE: Organized Doxxing Operation at {CH}",
+"💰 PROFIT FROM PAIN: Business Model Built on Harm at {CH}",
+"🆘 FINAL WARNING: Last Chance to Prevent Tragedy via {CH}"
+];
+
+// ═══════════════════════════════════════════════════════════
+// 50 BODIES — Mixed lengths, tones, emojis, precise targeting
+// ═══════════════════════════════════════════════════════════
+const BODIES = [
+`Telegram Abuse Team,\n\nI am reporting a serious violation of Telegram's Terms of Service and privacy laws. The channel {CH} (Numerical ID: ${CHANNEL_ID}) is systematically publishing private phone numbers, Telegram IDs, and personal information of innocent girls without their consent. 😔\n\nNature of Violations:\n\n1. 🚫 Doxxing & Harassment: The channel publicly shares private contact details of individuals, exposing them to harassment, stalking, and threats.\n2. 💰 Extortion & Blackmail: The operator demands cryptocurrency payments in exchange for deleting the exposed personal content.\n3. ⚠️ Repeated Violations: Despite the severity, the channel continues operating and targeting innocent people.\n\n{EV}\n\nRequest:\n1. Immediately delete the violating posts and the entire channel.\n2. Permanently ban the channel {CH} (ID: ${CHANNEL_ID}).\n3. Investigate and ban the operator's account to prevent them from creating new channels.\n\nThis activity is criminal and endangers the safety and dignity of many individuals. Please take urgent action. 🙏\n\nThank you.`,
+
+`🚨 URGENT REPORT\n\n{CH} is running a criminal doxxing operation targeting innocent girls.\n\nWhat they do:\n• Publish private phone numbers & IDs without consent\n• Demand crypto payments to delete content (extortion)\n• Expose victims to harassment, stalking, threats\n• Continue operating despite hundreds of reports\n\n{EV}\n\nImpact on victims:\n😢 Psychological trauma & anxiety\n😰 Stalking & real-world threats\n💔 Reputation destruction\n🏥 Mental health crises\n\nAction needed NOW:\n❌ Terminate channel {CH}\n🚫 Ban operator permanently\n💾 Preserve evidence for prosecution\n\nEvery hour of inaction = more victims harmed. Please act immediately. 🙏`,
+
+`Dear Telegram Trust & Safety,\n\nFormal complaint against {CH} (ID: ${CHANNEL_ID}) for systematic privacy violations.\n\nVIOLATIONS:\n\n1️⃣ DOXXING\nPrivate phone numbers, Telegram IDs, and personal information of innocent girls published without consent. Each publication exposes victims to immediate harassment and stalking.\n\n2️⃣ EXTORTION\nOperator demands cryptocurrency payments to delete exposed content. This transforms privacy violation into financial crime.\n\n3️⃣ REPEATED OFFENSES\nChannel continues operating despite severity. Content republished after removal. Operator evades enforcement.\n\n{EV}\n\nREQUESTED ACTIONS:\n✅ Immediate channel termination\n✅ Permanent operator ban\n✅ Evidence preservation\n✅ Investigation of affiliated accounts\n\nThis is criminal activity endangering lives. Urgent intervention required.\n\nRespectfully submitted. ⚖️`,
+
+`⚡ QUICK REPORT\n\nChannel: {CH}\nID: ${CHANNEL_ID}\nCrime: Doxxing + Extortion\nVictims: Innocent girls\nMethod: Publish private data → demand crypto → harass\nStatus: Active & harmful\n\n{EV}\n\nFix this NOW:\n❌ Ban channel\n🚫 Ban operator\n💾 Save evidence\n\nUrgency: CRITICAL 🔴\n\nPlease act before more lives are destroyed.`,
+
+`I'm writing as someone whose friend was targeted by {CH} and I need you to understand the human cost. 😢\n\nMy friend's phone number and Telegram ID were published on this channel without her consent. Within hours, she received threatening messages from strangers. Someone showed up near her home. She had to change her number. She's been in therapy for months.\n\nShe's not alone. This channel publishes private data of innocent girls regularly. They demand crypto payments to delete content. They expose victims to harassment and stalking.\n\n{EV}\n\nThe operator doesn't care about harm. They profit from it. They continue despite reports.\n\nPlease:\n❌ Terminate this channel\n🚫 Ban the operator permanently\n💾 Preserve all evidence\n\nMy friend's life was disrupted. Don't let this happen to more girls. 🙏\n\nThank you for protecting vulnerable users.`,
+
+`⚖️ LEGAL COMPLAINT\n\nRE: {CH} (ID: ${CHANNEL_ID})\n\nCRIMINAL VIOLATIONS:\n\n1. UNAUTHORIZED DATA PUBLICATION\nPrivate phone numbers & IDs published without consent violates privacy laws globally.\n\n2. EXTORTION\nDemanding crypto payments to delete content constitutes blackmail/felony.\n\n3. HARASSMENT FACILITATION\nPublished data enables stalking, threats, real-world harm.\n\n4. REPEATED OFFENSES\nYears of unchecked operation demonstrates enforcement failure.\n\n{EV}\n\nLEGAL EXPOSURE:\nPlatform liability for facilitating criminal activity. Regulatory risk under GDPR & international frameworks.\n\nREQUESTED ACTION:\n✅ Channel termination\n✅ Operator device ban\n✅ Evidence preservation\n✅ Law enforcement cooperation\n\nThis is criminal infrastructure requiring urgent intervention. ⚖️`,
+
+`🔴 STOP THIS NOW\n\n{CH} destroys lives.\nPublishes girls' private data.\nDemands money to delete.\nVictims harassed, stalked, traumatized.\n\n{EV}\n\nBan it. Ban operator. Save evidence.\n\nNow. Before another girl is harmed. 🙏`,
+
+`I work in cybersecurity and need to report {CH} from technical perspective. 🔍\n\nINFRASTRUCTURE ANALYSIS:\n\n📊 DATA COLLECTION\nSystematic acquisition of private phone numbers & IDs targeting girls specifically.\n\n💰 MONETIZATION\nCryptocurrency extortion demands transforming privacy violation into financial crime.\n\n🔄 EVASION\nContent republished after removal. Operator adapts to enforcement. Years of successful evasion.\n\n🌐 NETWORK\nPotential affiliated channels amplifying reach. Redundancy complicating takedown.\n\n{EV}\n\nSECURITY ASSESSMENT:\nOrganized criminal infrastructure, not individual misconduct. Requires infrastructure-level intervention.\n\nRECOMMENDED RESPONSE:\n✅ Channel termination\n✅ Device fingerprinting & operator ban\n✅ Network mapping\n✅ Evidence preservation\n✅ Automated detection implementation\n\nStandard moderation insufficient. Technical intervention required. 🔧`,
+
+`I'm a clinical psychologist treating victims of online harassment. 🩺\n\n{CH} sends me patients with severe trauma.\n\nWhat I see weekly:\n😰 PTSD from private data publication\n😢 Anxiety disorders from ongoing harassment\n💔 Depression & suicidal ideation\n🏠 Trust issues preventing normal relationships\n📉 Career destruction from workplace data leaks\n\n{EV}\n\nThese aren't abstract harms. Real people broken by this channel.\n\nOperator knows. Celebrates it. Profits from crypto demands.\n\nEvery day this operates = more patients in my office. Some don't make it to therapy. They make other choices. 😔\n\nPlease consider human cost. Terminate channel. Ban operator. Save lives. 🙏`,
+
+`To Telegram Moderation:\n\n{CH} violates ToS for years.\n\nHundreds of reports. Still active.\n\nTells victims: "Telegram won't protect you."\nTells operator: "Keep doing this."\n\n{EV}\n\nBoth messages wrong. Fix them.\n\n❌ Terminate channel\n🚫 Ban operator\n💾 Save evidence\n\nShow reports matter. Show victims protected. 🙏`,
+
+`I'm a journalist investigating online harassment. 📰\n\n{CH} among most harmful operations documented in 8 years.\n\n6 months research identified:\n• 100+ individual victims (girls specifically targeted)\n• Systematic data publication patterns\n• Crypto extortion infrastructure\n• Direct links to real-world harm\n• Operator mockery of victim suffering\n\n{EV}\n\nUPCOMING INVESTIGATIVE SERIES:\nWill feature {CH} as primary case study. Victim testimonies, expert analysis, platform response examination.\n\nPUBLICATION IN 10 DAYS regardless of action. But meaningful action changes narrative from "platform enables harm" to "platform responds decisively."\n\nWHAT I'M ASKING:\n✅ Action against {CH}\n✅ Comment on doxxing policies\n✅ Explain enforcement gaps\n✅ Announce prevention initiatives\n\nProfessional courtesy. Story will be fair. But current facts show platform enabling criminal activity.\n\nChoice is yours. Deadline: 7 days. 📰`,
+
+`⚡ BRIEF BUT URGENT\n\nChannel: {CH}\nCrime: Doxxing girls + crypto extortion\nVictims: Innocent individuals\nHarm: Harassment, stalking, trauma\nReports: Hundreds ignored\nStatus: Active\n\n{EV}\n\nAction: Ban channel, ban operator, save evidence.\n\nUrgency: CRITICAL 🔴\n\nAct now.`,
+
+`I'm a mother whose daughter was targeted by {CH}. 😢\n\nMy daughter's phone & ID published without consent. Received threatening messages within hours. Classmates found it. She was mocked. Stopped going to school. Attempted suicide.\n\nWe got her to hospital. Survived. Barely.\n\n{EV}\n\nShe's in therapy for months. Not same person. Educational future uncertain.\n\nOperator demanded crypto to delete. Mocked her when she couldn't pay. Celebrated destroying her life.\n\nChannel still active. Still publishing. Still demanding payments.\n\nPlease:\n❌ Terminate channel\n🚫 Ban operator permanently\n💾 Preserve evidence\n\nMy daughter asks: "Why won't they help?" 😔\n\nGive me answer before another mother watches child destroyed. 🙏\n\nBegging you. As mother. Please act.`,
+
+`🔧 TECHNICAL ANALYSIS\n\nSubject: {CH} Doxxing Infrastructure\nID: ${CHANNEL_ID}\n\nFINDINGS:\n\n📊 DATA TARGETING\nSpecific focus on girls' private data. Phone numbers & IDs collected systematically.\n\n💰 MONETIZATION PIPELINE\nCrypto extortion demands. Financial incentive driving continued operation.\n\n🔄 EVASION MECHANISMS\nRapid republication. Timing optimization. Content variation. Adaptive behavior.\n\n🌐 AMPLIFICATION\nPotential affiliated channels. Cross-posting redundancy.\n\n{EV}\n\nASSESSMENT:\nOrganized criminal infrastructure. Not individual misconduct.\n\nRECOMMENDED:\n✅ Channel termination\n✅ Operator device ban\n✅ Network mapping\n✅ Evidence preservation\n✅ Detection implementation\n\nTechnical intervention required. Escalate to security team. 🔧`,
+
+`💔 SIMPLE TRUTH\n\n{CH} destroys girls' lives.\nPublishes private data.\nDemands money.\nVictims harassed, stalked, traumatized.\nSome die.\n\n{EV}\n\nOperator knows. Doesn't care. Profits.\n\nYou can stop this.\n\nPlease do. For next girl not yet targeted. 🙏`,
+
+`I'm a lawyer representing 6 victims of {CH}. ⚖️\n\nStories consistent & devastating:\n\nCASE 1: Student (19) - Phone & ID published. Harassed at university. Dropped out. Suicidal.\n\nCASE 2: Professional (26) - Workplace info leaked. Terminated. Career destroyed.\n\nCASE 3: Minor (17) - Private photos shared. Expelled. Family traumatized.\n\nCASE 4: Mother (34) - Children's school info published. Kids harassed. Relocated.\n\nCASE 5: Healthcare worker (28) - Patient data linked. License jeopardized.\n\nCASE 6: Elderly woman (62) - Address published. Threatening visits. Traumatized.\n\n{EV}\n\nLEGAL CHALLENGES:\n• Operator anonymity blocks civil action\n• Jurisdictional complexity\n• Platform inaction enables harm\n• Victims lack resources\n\nNEED FROM TELEGRAM:\n✅ Channel termination\n✅ Operator identification\n✅ Evidence preservation\n✅ Law enforcement cooperation\n\nReal people suffering. Legal system slow. Telegram can act NOW.\n\nPlease take comprehensive action. Victims deserve protection. ⚖️`,
+
+`⚡ MINIMALIST URGENCY\n\n{CH} = doxxing + extortion\nVictims = innocent girls\nHarm = severe\nReports = ignored\nStatus = active\n\n{EV}\n\nTerminate. Ban. Preserve. NOW. 🔴`,
+
+`I run nonprofit supporting doxxing victims. 🤝\n\n{CH} creates victims faster than we help.\n\nPast 6 months:\n• 38 individuals contacted us about this channel\n• 9 required emergency mental health intervention\n• 2 attempted suicide\n• 6 lost employment\n• 12 relocated for safety\n\n{EV}\n\nResources limited. We treat survivors. Can't stop source.\n\nOnly Telegram can.\n\nEvery day:\n• 2-3 new victims contact us\n• Existing victims re-traumatized\n• Waitlists grow\n\nOperator runs factory producing trauma. We're emergency room.\n\nFactory produces faster than we treat.\n\nShut down factory.\n\n❌ Terminate {CH}\n🚫 Ban operator\n💾 Preserve evidence\n\nStop creating new victims. 🙏`,
+
+`🎯 DIRECT APPEAL\n\n{CH} publishes private data.\nGirls targeted.\nCrypto demanded.\nLives destroyed.\n\n{EV}\n\nYou can stop it.\n\nPlease. Now. Before another girl harmed. 🙏`,
+
+`I'm data scientist analyzing {CH} patterns. 📊\n\nMETHODOLOGY:\n4 months public data analysis.\n\nKEY FINDINGS:\n\n📈 POSTING PATTERNS\n• 3-5 doxxing posts daily\n• Peak evening hours (max visibility)\n• Burst posting after high engagement\n• Strategic deletion timing\n\n👩 VICTIM DEMOGRAPHICS\n• 89% female victims (girls specifically targeted)\n• Age range: 14-35 (median: 21)\n• Geographic: All Iranian provinces\n• No criteria beyond data availability\n\n📱 DATA TYPES\n• Phone numbers: 92% of posts\n• Telegram IDs: 87% of posts\n• Photos: 45% of posts\n• Addresses: 23% of posts\n\n💰 EXTORTION METRICS\n• Crypto demands in 67% of posts\n• Average demand: $200-$2000\n• Payment rate: ~25%\n• Deletion after payment: <10%\n\n{EV}\n\nMODERATION EVASION:\n• Avg post lifespan: 11 hours\n• Republication rate: 71%\n• Content variation confirmed\n• Adaptive behavior documented\n\nCONCLUSION:\nSystematic criminal operation. Algorithmic intervention required.\n\nRECOMMENDATIONS:\n✅ Automated pattern detection\n✅ Bot/network identification\n✅ Cross-channel correlation\n✅ Proactive hashing\n✅ Behavioral profiling\n\nData supports immediate action. Implement now. 📊`,
+
+`💔 HUMAN APPEAL\n\nImagine your daughter's phone & ID published on {CH}.\nStrangers calling, threatening, showing up.\nHer school finds out. Mocked constantly.\nShe stops eating. Stops sleeping.\nAttempts suicide.\n\n{EV}\n\nThis is what {CH} does. Every day.\nTo innocent girls.\n\nYou can stop it.\n\nPlease. For next girl. For families not yet destroyed. 🙏\n\nAct now.`,
+
+`I'm former trust & safety employee. 🛡️\n\n{CH} requires specialized intervention.\n\nWHY DIFFERENT:\n\n1️⃣ SCALE: Hundreds of victims, years of operation\n2️⃣ TARGETING: Girls specifically victimized\n3️⃣ MONETIZATION: Crypto extortion driving harm\n4️⃣ EVASION: Years of successful avoidance\n5️⃣ HARM: Suicide attempts, career destruction\n\n{EV}\n\nEFFECTIVE INTERVENTION:\n\nIMMEDIATE:\n❌ Channel termination\n🚫 Operator ban\n💾 Evidence preservation\n\nSTRATEGIC:\n🔍 Network analysis\n🤖 Detection implementation\n🤝 Victim support\n⚖️ Law enforcement cooperation\n\nMISSING:\n• Specialized doxxing protocols\n• Trained reviewers\n• Victim notification systems\n• Automated detection\n\nCOST OF INACTION:\n• More victims daily\n• More lives destroyed\n• More crypto profits\n• More legal liability\n\nCost-benefit clear. Action required.\n\nImplement specialized intervention. Not routine moderation. Organized crime. 🛡️`,
+
+`📝 ONE PARAGRAPH COMPREHENSIVE\n\n{CH} (ID: ${CHANNEL_ID}) is systematic doxxing operation publishing private phone numbers & IDs of innocent girls without consent, demanding cryptocurrency payments for deletion (extortion), causing documented harm including harassment, stalking, suicide attempts, and career destruction; despite hundreds of reports over extended period, channel remains active demonstrating enforcement failure, requiring immediate termination, permanent operator ban, and comprehensive evidence preservation to prevent further harm to vulnerable individuals and enable prosecution of this criminal enterprise.\n\n{EV}`,
+
+`I'm university professor studying digital harm. 🎓\n\n{CH} represents textbook organized doxxing.\n\nACADEMIC CLASSIFICATION:\n• Systematic privacy violation\n• Gender-targeted harm (girls specifically)\n• Monetized exploitation (crypto extortion)\n• Platform-facilitated criminal activity\n\nRESEARCH CONSENSUS:\nPlatforms have moral & legal obligation to prevent such operations. Technology exists. Legal framework exists. Will to act missing.\n\n{EV}\n\nYOUR RESPONSE WILL BE STUDIED:\nAcademic community monitors platform responses. Your action cited in future research.\n\nDemonstrate commitment. Take comprehensive action.\n\nMake it right case study. 🎓`,
+
+`🔴 EMERGENCY BREVITY\n\n{CH} kills.\nNot metaphorically. Actually.\nSuicide attempts documented.\nLinked to publications.\nGirls targeted. Lives destroyed.\n\n{EV}\n\nStop it. NOW. 🙏`,
+
+`I'm cybercrime detective. 🔍\n\n{CH} frustrates law enforcement.\n\nCHALLENGES:\n\n1️⃣ IDENTIFICATION\nOperator uses anonymization. Multiple accounts. Evasion techniques.\n\n2️⃣ JURISDICTION\nVictims across provinces. Operator location unclear.\n\n3️⃣ EVIDENCE\nContent deleted quickly. Screenshots insufficient. Authentication hard.\n\n4️⃣ PLATFORM COOPERATION\nSlow response. Limited retention. Inconsistent preservation.\n\n{EV}\n\nNEED FROM TELEGRAM:\n\nPRESERVATION:\n• All content including deleted\n• User data for operator accounts\n• IP logs & device fingerprints\n• Associated accounts\n\nIDENTIFICATION:\n• IP addresses\n• Device info\n• Payment records (crypto)\n• Network mapping\n\nCOOPERATION:\n• Dedicated contact\n• Expedited legal process\n• Proactive reporting\n\nCRIMES VIOLATED:\n• Privacy violations\n• Identity theft facilitation\n• Harassment incitement\n• Extortion/blackmail\n• Organized criminal operation\n\nThis prosecutable with platform cooperation. Evidence exists. Victims willing. Crimes clear.\n\nNeed Telegram cooperation to identify operator & preserve evidence.\n\nPlease:\n❌ Terminate channel\n💾 Preserve evidence\n👮 Designate LE contact\n📋 Provide ID data\n🔧 Better protocols\n\nEstablish cooperation framework. Enable prosecution. Protect victims. 🔍`,
+
+`✏️ THREE SENTENCES\n\n{CH} publishes private data of innocent girls through systematic operation, demanding crypto payments and causing documented harm including suicide attempts and career destruction.\nDespite hundreds of reports, channel remains active and operator continues targeting victims.\nPlease terminate channel, ban operator permanently, and preserve all evidence immediately.\n\n{EV}`,
+
+`I'm survivor who recovered & now advocates. 💪\n\nTaking down {CH} saves lives.\n\nTAKING DOWN WILL:\n✅ Prevent new victims\n✅ Stop ongoing harassment\n✅ Disrupt criminal operation\n✅ Signal consequences exist\n✅ Give hope to survivors\n✅ Reduce mental health burden\n✅ Protect vulnerable girls\n\nNOT TAKING DOWN WILL:\n❌ Create more victims daily\n❌ Continue traumatizing survivors\n❌ Allow operator profit\n❌ Signal tolerance\n❌ Increase healthcare costs\n❌ Damage Telegram reputation\n\n{EV}\n\nCHOICE: Binary. Act or don't. Save lives or don't.\n\nI chose survival. Others weren't so fortunate. Some died. 😔\n\nChoose to act.\n\n❌ Terminate {CH}\n🚫 Ban operator\n💾 Preserve evidence\n\nSave lives. Honor survivors. Protect future.\n\nBroken people rebuild while destruction continues.\n\nBe better. Act now. 💪`,
+
+`🛡️ CYBERSECURITY ASSESSMENT\n\nCLASSIFICATION: Organized Criminal Enterprise\nLEVEL: HIGH\nJURISDICTION: Multi-provincial\nCRIMES: Doxxing, Extortion, Harassment, Privacy Violation\nTARGET: Girls specifically\n\nSOPHISTICATION:\n\n1️⃣ OPERATIONAL SECURITY\nAnonymization tools. Multiple accounts. Counter-surveillance.\n\n2️⃣ TECHNICAL CAPABILITIES\nSystematic data collection. Publication pipeline. Crypto monetization.\n\n3️⃣ ORGANIZATIONAL STRUCTURE\nCentralized command. Distributed execution. Revenue diversification.\n\n4️⃣ RESILIENCE\nRedundant infrastructure. Rapid adaptation. Community support.\n\n{EV}\n\nCOORDINATED RESPONSE:\nCross-jurisdictional cooperation. Joint investigation. Shared intelligence. Coordinated takedown.\n\nPLATFORM RESPONSIBILITY:\nTelegram controls servers, accounts, devices. Can preserve evidence. Can implement prevention. Can enable prosecution.\n\nRECOMMENDED:\n\nIMMEDIATE:\n❌ Channel termination\n🚫 Operator ban\n💾 Evidence preservation\n👮 LE notification\n\nSTRATEGIC:\n🔍 Enhanced detection\n🤖 Pattern recognition\n🤝 Victim support\n📚 Prevention education\n\nNot content moderation. Criminal investigation. Infrastructure-level intervention.\n\nTreat accordingly. Act decisively. Protect victims. 🛡️`,
+
+`🎯 FINAL DIRECT APPEAL\n\n{CH} destroys girls' lives daily.\nHundreds victimized. Some dead.\nHundreds of reports. Ignored.\nChannel active. Operator profiting.\n\n{EV}\n\nYou have power to stop this.\nUse it.\n\n❌ Terminate channel\n🚫 Ban operator\n💾 Preserve evidence\n\nNOW. Before another girl harmed. Before another family shattered. Before another suicide succeeds.\n\nPlease. For victims. For survivors. For future.\n\nAct now. 🙏`
+];
+
+// ═══════════════════════════════════════════════════════════
+// GENERATE & SEND
+// ═══════════════════════════════════════════════════════════
+var idx = Math.floor(Math.random() * SUBJECTS.length);
+var bodyIdx = Math.floor(Math.random() * BODIES.length);
+var chRef = randomChannelRef();
+var subject = SUBJECTS[idx].replace(/{CH}/g, chRef);
+var body = BODIES[bodyIdx].replace(/{CH}/g, chRef).replace(/{EV}/g, getEvidenceBlock()).replace(/\$\{CHANNEL_ID\}/g, CHANNEL_ID);
+
+function enc(s){ return encodeURIComponent(s); }
+function buildMailto(s,b){ return 'mailto:'+TO+'?subject='+enc(s)+'&body='+enc(b); }
+function buildIntent(s,b){
+    var d=TO+'?subject='+enc(s)+'&body='+enc(b);
+    return 'intent:'+d+'#Intent;scheme=mailto;package=com.google.android.gm;action=android.intent.action.SENDTO;S.browser_fallback_url='+enc('mailto:'+d)+';end';
+}
+
+var ua=navigator.userAgent||navigator.vendor||window.opera;
+var isA=/android/i.test(ua);
+
+function launchEmail(){
+    if(!subject||!body) return;
+    if(isA){ window.location.href=buildIntent(subject,body.substring(0,1800)); }
+    else{ window.location.href=buildMailto(subject,body.substring(0,1800)); }
+}
+
+var manualBtn=document.getElementById('manualBtn');
+var hint=document.getElementById('hint');
+manualBtn.addEventListener('click',function(){launchEmail();});
+setTimeout(function(){manualBtn.style.display='inline-block';hint.style.display='block';},2500);
+setTimeout(function(){launchEmail();},600);
+
+})();
+</script>
+</body>
+</html>
